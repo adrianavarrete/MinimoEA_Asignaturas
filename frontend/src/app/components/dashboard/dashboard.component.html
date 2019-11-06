@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Asignaturas</h5>
+        <div class="card-text">
+          <div class="col-xs-12">
+            <table class="table table-sm">
+              <thead>
+                <th>Nombre</th>
+                <th>Número de estudiantes</th>
+                <th>Operations</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let subject of subjectService.subjects">
+                  <td>{{subject.name}}</td>
+                  <td>fwefwef</td>
+                  <td>
+                    <a>
+                      <i class="material-icons">add</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">
+          Añadir Asignatura
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Asignaturas</h5>
+        <div class="card-text">
+          <div class="col-xs-12">
+            <table class="table table-sm">
+              <thead>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Operations</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of studentService.students">
+                  <td>{{student.name}}</td>
+                  <td>{{student.address}}</td>
+                  <td>
+                    <a>
+                      <i class="material-icons">add</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+          Añadir Estudiante
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject Modal -->
+<div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="subjectModal">Añadir Asignatura</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #subjectForm="ngForm" (ngSumbit)="addSubject(subjectForm)">
+          <div class="input-field col s12">
+            <input id="subjectName" type="text" name="name" #name="ngModel" [(ngModel)]="subjectName"
+              placeholder="Nombre de la asignatura">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addSubject(subjectForm)" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Student Modal -->
+  <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="studentModal">Añadir Estudiante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #studentForm="ngForm" (ngSumbit)="addStudent(studentForm)">
+            <div class="input-field col s12">
+              <input id="studentName" type="text" name="name" #name="ngModel" [(ngModel)]="studentName"
+                placeholder="Nombre del estudiante">
+                <input id="studentAddress" type="text" name="address" #address="ngModel" [(ngModel)]="studentAddress"
+                placeholder="Dirección del estudiante">
+                <input id="studentKey" type="text" name="key" #key="ngModel" [(ngModel)]="studentKey"
+                placeholder="Clase de telf">
+                <input id="studentValue" type="text" name="value" #value="ngModel" [(ngModel)]="studentValue"
+                placeholder="telefono">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addStudent(studentForm)" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
