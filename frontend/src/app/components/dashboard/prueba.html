@@ -1,0 +1,30 @@
+<form #studentForm="ngForm" (ngSumbit)="addStudent(studentForm)">
+  <div class="input-field col s12">
+    <input id="studentName" type="text" name="name" #name="ngModel" [(ngModel)]="studentName"
+      placeholder="Nombre del estudiante">
+  </div>
+  <div>
+    <input id="studentAddress" type="text" name="address" #address="ngModel" [(ngModel)]="studentAddress"
+      placeholder="Dirección del estudiante">
+  </div>
+  <div>
+    <input id="studentKey" type="text" name="key" #key="ngModel" [(ngModel)]="studentKey"
+      placeholder="Clase de telf">
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" name="key" #key="ngModel"
+      [(ngModel)]="studentKey" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">
+      Tipo de teléfono
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Home</a>
+      <a class="dropdown-item" href="#">Work</a>
+    </div>
+  </div>
+  <div>
+    <input id="studentValue" type="text" name="value" #value="ngModel" [(ngModel)]="studentValue"
+      placeholder="telefono">
+  </div>
+
+</form>

@@ -7,11 +7,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
+import { DetalleAsignaturaComponent } from './components/detalle-asignatura/detalle-asignatura.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    DetalleAsignaturaComponent
   ],
   imports: [
     BrowserModule,

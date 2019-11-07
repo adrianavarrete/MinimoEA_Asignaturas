@@ -157,9 +157,26 @@ class SubjectRoutes {
             }
         });
     }
+    getSubjectDetails(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const subject = yield Subject_1.default.findOne({ "_id": req.params.id }).populate('students');
+                if (!subject) {
+                    res.status(404).send({ message: 'Subject not found' });
+                }
+                else {
+                    res.status(201).json(subject);
+                }
+            }
+            catch (err) {
+                res.status(500).json(err);
+            }
+        });
+    }
     routes() {
         this.router.get('/subjects', this.getSubjects);
         this.router.get('/subjects/:id', this.getSubject);
+        this.router.get('/subjects/:id/details', this.getSubjectDetails);
         this.router.post('/subjects', this.createSubject);
         this.router.post('/subjects/addstudent', this.addStudentSubject);
         this.router.post('/subjects/deletestudent', this.deleteStudentSubject);

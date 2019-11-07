@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Nombre de la asignatura: {{subject.name}}</h5>
+        <h5 class="card-title">Número de estudiantes matriculados: {{students.length}} </h5>
+        <div class="card-text">
+          <div class="col">
+            <table class="table">
+              <thead>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Operations</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of students">
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.phones }}</td>
+                  <td>
+                    <a (click)="deleteStudentInSubject(student._id, subject._id)">
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentModal">
+          Añadir estudiante a {{subject.name}}
+        </button>
+        <button [routerLink]="['/']" type="button" class="btn btn-primary">
+          Volver al Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Student Subject Modal -->
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="studentModal">Añadir Estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <th>Check</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfonos</th>
+            <th>Operations</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let globalStudent of studentService.students">
+              <td>
+                <button (click)="addStudentInSubject(globalStudent._id, subject._id)" data-dismiss="modal" class="btn btn-success">Añadir</button>
+              </td>
+              <td>{{ globalStudent.name }}</td>
+              <td>{{ globalStudent.address }}</td>
+              <td>{{ globalStudent.phones }}</td>
+              <td>
+                <a (click)="deleteStudentInSubject(globalStudent._id, subject._id)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>

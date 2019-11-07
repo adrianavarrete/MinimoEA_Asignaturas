@@ -38,6 +38,7 @@ class StudentRoutes {
     createStudent(req: Request, res: Response): void {
 
         const { name, address, phones } = req.body;
+        console.log(phones);
         const newStudent = new Student({ name, address, phones });
 
         newStudent.save().then((data) => {

@@ -159,16 +159,36 @@ class SubjectRoutes {
         }
     }
 
+    async getSubjectDetails(req: Request, res: Response) {
+
+        try {
+            const subject = await Subject.findOne({ "_id": req.params.id }).populate('students');
+            if (!subject) {
+                res.status(404).send({ message: 'Subject not found' });
+
+            } else {
+                res.status(201).json(subject);
+            }
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+
+
+    }
+
 
 
     routes() {
         this.router.get('/subjects', this.getSubjects);
         this.router.get('/subjects/:id', this.getSubject);
+        this.router.get('/subjects/:id/details', this.getSubjectDetails);
         this.router.post('/subjects', this.createSubject);
         this.router.post('/subjects/addstudent', this.addStudentSubject);
         this.router.post('/subjects/deletestudent', this.deleteStudentSubject);
         this.router.delete('/subjects/:id', this.deleteSubject);
         this.router.put('/subjects/:id', this.updateSubject);
+
 
     }
 }

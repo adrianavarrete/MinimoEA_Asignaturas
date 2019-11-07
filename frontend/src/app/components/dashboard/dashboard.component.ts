@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
   subjectForm: FormGroup;
   formBuilder: any;
   phones = new Map();
+  singleSubject = new Subject();
 
   // subjects: Subject[];
 
-  constructor(public subjectService: SubjectService, public studentService: StudentService) {
+  constructor(public subjectService: SubjectService, public studentService: StudentService, private router: Router) {
 
   }
 
@@ -62,13 +63,13 @@ export class DashboardComponent implements OnInit {
     console.log(form.value);
     console.log(form.value.key);
 
-    this.phones.set(form.value.key, form.value.value);
+   // this.phones.set(form.value.key, form.value.value);
 
     const newStudent = {
       _id: '',
       name: form.value.name,
       address: form.value.address,
-      phones: this.phones
+      phones: this.phones.set(form.value.key, form.value.value)
     };
 
     console.log(newStudent);
@@ -82,6 +83,41 @@ export class DashboardComponent implements OnInit {
       });
 
   }
+
+  deleteSubject(_id: string) {
+    console.log(_id);
+    if (confirm('Are you sure?')) {
+      this.subjectService.deleteSubject(_id)
+        .subscribe(res => {
+          this.getSubjects();
+        });
+    }
+  }
+
+  deleteStudent(_id: string) {
+    console.log(_id);
+    if (confirm('Are you sure?')) {
+      this.studentService.deleteStudent(_id)
+        .subscribe(res => {
+          this.getStudents();
+        });
+    }
+  }
+
+  subjectDetail(_id: string) {
+
+    this.subjectService.getSubjectDetail(_id)
+      .subscribe( res => {
+          console.log(res);
+          this.singleSubject = res as Subject;
+          this.router.navigate(['/subject', this.singleSubject._id]);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+
 
   resetForm(form?: NgForm) {
     if (form) {
