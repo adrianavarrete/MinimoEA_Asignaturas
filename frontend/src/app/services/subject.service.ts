@@ -8,9 +8,12 @@ import { Subject } from '../models/subject';
 export class SubjectService {
 
   readonly URL_API = 'http://localhost:3000/subjects';
+  selectedSubject: Subject;
   subjects: Subject[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.selectedSubject = new Subject();
+   }
 
   getSubjects() {
     return this.http.get(this.URL_API);

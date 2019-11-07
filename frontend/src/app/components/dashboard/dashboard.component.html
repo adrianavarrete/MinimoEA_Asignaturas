@@ -53,12 +53,13 @@
                   <td>{{student.name}}</td>
                   <td>{{student.address}}</td>
                   <td>
-                    <a>
-                      <i class="material-icons">info</i>
+                    <a (click)="editStudent(student._id)">
+                      <i class="material-icons">edit</i>
                     </a>
                     <a (click)="deleteStudent(student._id)">
                       <i class="material-icons">delete</i>
                     </a>
+
 
                   </td>
                 </tr>
@@ -67,7 +68,8 @@
           </div>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal"
+          (click)="add==true">
           Añadir Estudiante
         </button>
       </div>
@@ -92,10 +94,11 @@
 
           <form #subjectForm="ngForm" (ngSumbit)="addSubject(subjectForm)">
             <div class="form-group row">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="subjectService.selectedSubject._id">
               <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
-                <input id="subjectName" class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="subjectName"
-                placeholder="Nombre de la asignatura">
+                <input id="subjectName" class="form-control" type="text" name="name" #name="ngModel"
+                  [(ngModel)]="subjectService.selectedSubject.name" placeholder="Nombre de la asignatura">
               </div>
             </div>
           </form>
@@ -115,7 +118,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="studentModal">Añadir Estudiante</h5>
+          <h5 class="modal-title" id="studentModal">Añadir estudiante</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -125,29 +128,29 @@
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
-                <input id="studentName" class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="studentName"
-                  placeholder="Nombre del estudiante">
+                <input id="studentName" class="form-control" type="text" name="name" #name="ngModel"
+                  [(ngModel)]="studentName" placeholder="Nombre del estudiante">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-2 col-form-label">Dirección</label>
               <div class="col-sm-10">
-                <input id="studentAddress" class="form-control"  type="text" name="address" #address="ngModel" [(ngModel)]="studentAddress"
-                placeholder="Dirección del estudiante">
+                <input id="studentAddress" class="form-control" type="text" name="address" #address="ngModel"
+                  [(ngModel)]="studentAddress" placeholder="Dirección del estudiante">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-2 col-form-label">Descripción Teléfono</label>
               <div class="col-sm-10">
-                <input id="studentKey" class="form-control"  type="text" name="key" #address="ngModel" [(ngModel)]="studentKey"
-                placeholder="Fijo o Móvil">
+                <input id="studentKey" class="form-control" type="text" name="key" #address="ngModel"
+                  [(ngModel)]="studentKey" placeholder="Fijo o Móvil">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-2 col-form-label">Número</label>
               <div class="col-sm-10">
-                <input id="studentValue" class="form-control"  type="text" name="value" #address="ngModel" [(ngModel)]="studentValue"
-                placeholder="Número">
+                <input id="studentValue" class="form-control" type="text" name="value" #address="ngModel"
+                  [(ngModel)]="studentValue" placeholder="Número">
               </div>
             </div>
           </form>

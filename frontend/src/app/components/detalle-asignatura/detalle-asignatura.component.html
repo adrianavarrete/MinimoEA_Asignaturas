@@ -10,14 +10,15 @@
               <thead>
                 <th>Nombre</th>
                 <th>Dirección</th>
-                <th>Teléfono</th>
+                <th colspan="2">Teléfono</th>
                 <th>Operations</th>
               </thead>
               <tbody>
                 <tr *ngFor="let student of students">
                   <td>{{ student.name }}</td>
                   <td>{{ student.address }}</td>
-                  <td>{{ student.phones }}</td>
+                  <td>{{ student.phones[0].key }}</td>
+                  <td>{{ student.phones[0].value }}</td>
                   <td>
                     <a (click)="deleteStudentInSubject(student._id, subject._id)">
                       <i class="material-icons">delete</i>
@@ -59,8 +60,7 @@
             <th>Check</th>
             <th>Nombre</th>
             <th>Dirección</th>
-            <th>Teléfonos</th>
-            <th>Operations</th>
+            <th colspan="2">Teléfonos</th>
           </thead>
           <tbody>
             <tr *ngFor="let globalStudent of studentService.students">
@@ -69,12 +69,8 @@
               </td>
               <td>{{ globalStudent.name }}</td>
               <td>{{ globalStudent.address }}</td>
-              <td>{{ globalStudent.phones }}</td>
-              <td>
-                <a (click)="deleteStudentInSubject(globalStudent._id, subject._id)">
-                  <i class="material-icons">delete</i>
-                </a>
-              </td>
+              <td>{{ globalStudent.phones[0].key }}</td>
+              <td>{{ globalStudent.phones[0].value }}</td>
             </tr>
           </tbody>
         </table>

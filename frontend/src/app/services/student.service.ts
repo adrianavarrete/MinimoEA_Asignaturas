@@ -19,8 +19,16 @@ export class StudentService {
     return this.http.get(this.URL_API);
   }
 
+  getStudent(_id: string) {
+    return this.http.get(this.URL_API + `/${_id}`);
+  }
+
   postStudent(student: Student) {
     return this.http.post(this.URL_API, student);
+  }
+
+  putStudent(student: Student) {
+    return this.http.put(this.URL_API + `/${student._id}`, student);
   }
 
   deleteStudent(_id: string) {

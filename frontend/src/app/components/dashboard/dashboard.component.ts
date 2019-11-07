@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../models/subject';
 import { Student } from '../../models/student';
+import { Phone } from '../../models/phone';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StudentService } from '../../services/student.service';
@@ -18,8 +19,11 @@ export class DashboardComponent implements OnInit {
 
   subjectForm: FormGroup;
   formBuilder: any;
-  phones = new Map();
+  phones: Phone[] = [];
+  student = new Student('','','','');
   singleSubject = new Subject();
+  add: boolean;
+
 
   // subjects: Subject[];
 
@@ -59,22 +63,26 @@ export class DashboardComponent implements OnInit {
       });
 
   }
-  addStudent(form: NgForm) {
+  addStudent(form: NgForm, opertation:string) {
     console.log(form.value);
     console.log(form.value.key);
 
-   // this.phones.set(form.value.key, form.value.value);
+    // this.phones.set(form.value.key, form.value.value);
 
-    const newStudent = {
-      _id: '',
-      name: form.value.name,
-      address: form.value.address,
-      phones: this.phones.set(form.value.key, form.value.value)
-    };
 
-    console.log(newStudent);
+    this.phones.push({
+      key: form.value.key,
+      value: form.value.value
+    });
 
-    this.studentService.postStudent(newStudent)
+    this.student.name = form.value.name;
+    this.student.address = form.value.address,
+    this.student.phones = this.phones;
+
+
+    console.log(this.student);
+
+    this.studentService.postStudent(this.student)
       .subscribe(res => {
         console.log(res);
         this.getStudents();
@@ -104,17 +112,25 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+
   subjectDetail(_id: string) {
 
     this.subjectService.getSubjectDetail(_id)
-      .subscribe( res => {
-          console.log(res);
-          this.singleSubject = res as Subject;
-          this.router.navigate(['/subject', this.singleSubject._id]);
-        },
+      .subscribe(res => {
+        console.log(res);
+        this.singleSubject = res as Subject;
+        this.router.navigate(['/subject', this.singleSubject._id]);
+      },
         err => {
           console.log(err);
         });
+  }
+
+  editStudent(_id: string) {
+
+   this.router.navigate(['/student', _id]);
+
   }
 
 

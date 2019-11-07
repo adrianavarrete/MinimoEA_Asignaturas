@@ -8,12 +8,14 @@ import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { DetalleAsignaturaComponent } from './components/detalle-asignatura/detalle-asignatura.component';
+import { UpdateEstudiantesComponent } from './components/update-estudiantes/update-estudiantes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DetalleAsignaturaComponent
+    DetalleAsignaturaComponent,
+    UpdateEstudiantesComponent
   ],
   imports: [
     BrowserModule,

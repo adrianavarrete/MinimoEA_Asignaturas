@@ -4,9 +4,9 @@ const mongoose_1 = require("mongoose");
 const StudentSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     address: { type: String, required: true },
-    phones: {
-        type: Map,
-        of: String
-    }
+    phones: [{
+            key: String,
+            value: String
+        }]
 });
 exports.default = mongoose_1.model('Student', StudentSchema);

@@ -3,7 +3,7 @@ export class Phone {
   value: string;
 
   constructor(key = '', value = '') {
-   this.key = key;
-   this.value = value;
-  }
+    this.key = key;
+    this.value = value;
+   }
 }

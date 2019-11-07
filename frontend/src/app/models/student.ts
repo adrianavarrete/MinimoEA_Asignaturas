@@ -11,6 +11,6 @@ export class Student {
   _id: string;
   name: string;
   address: string;
-  phones: Map<string, string>;
+  phones: Phone[];
 
 }
